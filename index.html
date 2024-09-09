@@ -54,6 +54,10 @@
                 playSound(button.sound);
             });
 
+            btn.addEventListener('touchstart', () => {
+                playSound(button.sound);
+            });
+
             container.appendChild(btn);
         });
     }
