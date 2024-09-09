@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Buttons with Sounds</title>
+    <style>
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .dynamic-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Press the Buttons</h1>
+<div class="button-container" id="button-container"></div>
+
+<script>
+    // Preconfigured JSON object
+    const buttonConfig = [
+        { "name": "Button 1", "color": "#f44336", "sound": "./assets/sounds/fwop.wav" },
+        { "name": "Button 2", "color": "#4CAF50", "sound": "./assets/sounds/sound2.mp3" },
+        { "name": "Button 3", "color": "#2196F3", "sound": "./assets/sounds/sound3.mp3" },
+        { "name": "Button 4", "color": "#FFEB3B", "sound": "./assets/sounds/sound4.mp3" }
+    ];
+
+    // Function to play a sound
+    function playSound(soundFile) {
+        const audio = new Audio(soundFile);
+        audio.play();
+    }
+
+    // Function to create buttons dynamically
+    function createButtons() {
+        const container = document.getElementById('button-container');
+        
+        buttonConfig.forEach(button => {
+            const btn = document.createElement('button');
+            btn.innerText = button.name;
+            btn.style.backgroundColor = button.color;
+            btn.classList.add('dynamic-button');
+
+            // Add event listener to play sound on click
+            btn.addEventListener('click', () => {
+                playSound(button.sound);
+            });
+
+            container.appendChild(btn);
+        });
+    }
+
+    // Create the buttons when the page loads
+    window.onload = createButtons;
+</script>
+
+</body>
+</html>
